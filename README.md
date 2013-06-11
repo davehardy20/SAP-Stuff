@@ -7,7 +7,6 @@ Then to run Bizploit with the scanTarget.sft file:-
 
 ./bizploit -h
 
-Warning: It was not possible to load the RFC library, some connectors might not work.
 bizploit - Open Source ERP Penetration Testing Framework (v1.50)
 Usage: bizploit [-d] [-t targets] [-s script] [-o output]
 	If executed with no arguments	Starts interactive bizploit shell
