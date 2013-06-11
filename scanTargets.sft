@@ -1,0 +1,59 @@
+#####################################################################################################
+#Bizploit Setup Targets and Scan Script
+#Need to add targets into the script as below and also include a text file called targets.txt in the
+#Bizploit folder with the same ip addresses in it
+#####################################################################################################
+
+targets
+	addTarget
+		set host 172.30.42.13,172.30.42.14,172.30.42.21,172.30.42.32,172.30.46.40,172.30.46.41,172.30.46.42,172.30.46.43,172.30.46.44
+	back
+	discoverConnectors all
+	set mode sap
+	back
+	show
+back
+plugins
+	discovery getClients
+	discovery config getClients
+	back
+	discovery findRegRFCServers
+	discovery config findRegRFCServers
+		set regTpnames rfcexec,execute,exec,run,IGS,sapgw,sapgw00,sapgw01,sapgw02,sapgw03,NSP,GATEWAY,GATEWAY 0
+	back
+	discovery getSaprouterInfo
+	discovery config getSaprouterInfo
+		set type file
+		set targets targets.txt
+	back
+	discovery getApplicationServers
+	discovery icmURLScan
+	discovery ping
+	vulnassess all
+	vulnassess config bruteLogin
+		set type defaultUsers
+		set tryHardcodedSAPStar True
+		set tryUserAsPwd True
+	back
+	vulnassess config registerExtServer
+		set tpname evilgw
+	back
+	vulnassess config saprouterNative
+	set type file
+	set targets targets.txt
+	back
+	vulnassess config checkRFCPrivs
+	set checkExtOSCommands True
+	back
+	vulnassess config icmAdmin
+	set adminURL /sap/admin
+	back
+back
+start
+reporting
+save html test-report.html
+back
+vulnerabilities
+show
+
+
