@@ -23,4 +23,4 @@ Usage: bizploit [-d] [-t targets] [-s script] [-o output]
 
 and then wait.
 
-You will also note from the folders created when you extract the Bizploit archive that there is a  Scripts folder there are more examples
+You will also note from the folders created when you extract the Bizploit archive that there is a Scripts folder there are more examples
